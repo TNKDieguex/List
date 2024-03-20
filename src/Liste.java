@@ -1,19 +1,11 @@
-public class Vecteur {
-    private int[] tableau;
+public class Liste {
     private int nbElements;
 
-    public static final int RATIO_AGRANDISSEMENT = 2;
-    public static final int TAILLE_INITIALE = 5;
-
-    public Vecteur() {
-        this(TAILLE_INITIALE);
-    }
-
-    public Vecteur(int tailleInitiale) {
-        tableau = new int[tailleInitiale];
+    public Liste(int tailleInitiale) {
+       tableau = new int[tailleInitiale];
         nbElements = 0;
     }
-
+/*
     public String toString() {
         String str = estVide() ? "[" : "[" + tableau[0];
         for (int i = 1; i < nbElements; i++)
@@ -103,4 +95,6 @@ public class Vecteur {
         tableau = new int[TAILLE_INITIALE];
         nbElements = 0;
     }
+
+ */
 }
