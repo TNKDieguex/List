@@ -1,13 +1,11 @@
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+class ListeTest {
+    Liste data;
 
-class VecteurTest {
-    Vecteur data;
-
-    @BeforeEach
+    @Test
     void setUp() {
-        data = new Vecteur();
+        data = new Liste();
         data.ajouter(0);
         data.ajouter(10);
         data.ajouter(20);
@@ -25,14 +23,14 @@ class VecteurTest {
 
     @org.junit.jupiter.api.Test
     void getNbElements() {
-        Vecteur vide = new Vecteur();
+        Liste vide = new Liste();
         assertEquals(0, vide.getNbElements());
         assertEquals(6, data.getNbElements());
     }
 
     @org.junit.jupiter.api.Test
     void estVide() {
-        Vecteur vide = new Vecteur();
+        Liste vide = new Liste();
         assertEquals(true, vide.estVide());
         assertEquals(false, data.estVide());
     }

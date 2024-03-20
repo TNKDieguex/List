@@ -2,7 +2,7 @@ public class Liste {
     private int nbElements;
 
     public Liste(int tailleInitiale) {
-       tableau = new int[tailleInitiale];
+        tableau = new int[tailleInitiale];
         nbElements = 0;
     }
 /*
