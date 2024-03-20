@@ -1,8 +1,9 @@
 public class Liste {
+    private Noeud premier;
     private int nbElements;
 
-    public Liste(int tailleInitiale) {
-        tableau = new int[tailleInitiale];
+    public Liste() {
+        premier = null;
         nbElements = 0;
     }
 /*

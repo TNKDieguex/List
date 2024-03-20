@@ -1,7 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("\nTest 1: Création d'un vecteur vide");
         Liste data = new Liste();
+        /*
+        System.out.println("\nTest 1: Création d'un vecteur vide");
         System.out.println(data);
         System.out.println("nbElements: " + data.getNbElements());
         System.out.println("estVide: " + data.estVide());
@@ -93,6 +94,7 @@ public class Main {
         data.effacerTout();
         System.out.println(data);
         System.out.println(data.getNbElements());
+        */
     }
 }
 
