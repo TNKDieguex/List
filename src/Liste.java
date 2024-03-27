@@ -1,9 +1,10 @@
 public class Liste {
     public class Noeud {
         public int valeur;
-        public Noeud prochain;
+        public Noeud prochain, precedent;
         public Noeud(int valeur){
             this.valeur = valeur;
+            this.precedent = null;
             this.prochain = null;
         }
 
@@ -11,7 +12,7 @@ public class Liste {
             return String.valueOf(valeur);
         }
     }
-    private Noeud premier;
+    private Noeud premier, dernier;
     private int nbElements;
 
     public Liste() {
@@ -34,37 +35,52 @@ public class Liste {
         return getNoeudAt(index).valeur;
     }
     private Noeud getNoeudAt(int index) {
-        for (Noeud courant = premier; courant != null; courant = courant.prochain)
-            if (index-- == 0)
-                return courant;
-        return null;
+        if(index >= 0) {
+            for (Noeud courant = premier; courant != null; courant = courant.prochain)
+                if (index-- == 0)
+                    return courant;
+        }else {
+            for (Noeud courant = dernier; courant != null; courant = courant.precedent)
+                if (++index == 0)
+                    return courant;
+        }
+            return null;
     }
-    public void ajouter(int valeur) {
-        Noeud dernier = null;
-        for (Noeud courant = premier; courant != null; courant = courant.prochain)
-            dernier = courant;
+    public boolean ajouter(int valeur) {
 
-        if (dernier == null) {
+        if (estVide()) {
             premier = new Noeud(valeur);
+            dernier = premier;
         }
         else {
-            dernier.prochain = new Noeud(valeur);
+            Noeud nouveau = new Noeud(valeur);
+            dernier.prochain = nouveau;
+            dernier.precedent = dernier;
+            dernier = dernier.prochain;
         }
         nbElements++;
+        return true;
     }
-    public void ajouter(int valeur, int index) {
+    public boolean ajouter(int valeur, int index) {
+        if(index < -nbElements || index > nbElements)
+            return false;
         Noeud precedent = getNoeudAt(index - 1);
         Noeud nouveau = new Noeud(valeur);
 
         if (index == 0) {
             nouveau.prochain = premier;
+            nouveau.precedent = null;
             premier = nouveau;
-        }
-        else {
+        } else if (index == nbElements || index == -1) {
+            return ajouter(valeur);
+        } else {
             nouveau.prochain = precedent.prochain;
+            nouveau.precedent = precedent;
             precedent.prochain = nouveau;
+            nouveau.prochain.precedent = nouveau;
         }
         nbElements++;
+        return true;
     }
 
     public void ajouter(Liste autre) {

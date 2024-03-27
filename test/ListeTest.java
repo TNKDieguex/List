@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ListeTest {
     Liste data;
@@ -9,62 +9,81 @@ class ListeTest {
     @BeforeEach
     void setUp() {
         data = new Liste();
-        data.ajouter(0);
-        data.ajouter(10);
-        data.ajouter(20);
-        data.ajouter(30);
-        data.ajouter(40);
-        data.ajouter(50);
+        data.ajouter(1);
+        data.ajouter(2);
+        data.ajouter(3);
+        data.ajouter(4);
+        data.ajouter(5);
     }
 
-    @org.junit.jupiter.api.Test
-    void getElementAt() {
-        assertEquals(0, data.getElementAt(0));
-        assertEquals(30, data.getElementAt(3));
-        assertEquals(50, data.getElementAt(5));
-    }
-
-    @org.junit.jupiter.api.Test
+    @Test
     void getNbElements() {
-        assertEquals(6, data.getNbElements());
+        assertEquals(5, data.getNbElements());
+
         Liste vide = new Liste();
         assertEquals(0, vide.getNbElements());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void estVide() {
-        assertEquals(false, data.estVide());
+        assertFalse(data.estVide());
+
         Liste vide = new Liste();
-        assertEquals(true, vide.estVide());
+        assertTrue(vide.estVide());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    void getElementAt() {
+        assertEquals(1, data.getElementAt(0));
+        assertEquals(3, data.getElementAt(2));
+        assertEquals(5, data.getElementAt(4));
+    }
+
+    @Test
     void ajouter() {
-        data.ajouter(90);
-        data.ajouter(91);
-        data.ajouter(92);
-        assertEquals(90, data.getElementAt(6));
-        assertEquals(91, data.getElementAt(7));
-        assertEquals(92, data.getElementAt(8));
-        assertEquals(9, data.getNbElements());
+        data.ajouter(95);
+        data.ajouter(96);
+        data.ajouter(97);
+        assertEquals(8, data.getNbElements());
+        assertEquals(95, data.getElementAt(5));
+        assertEquals(96, data.getElementAt(6));
+        assertEquals(97, data.getElementAt(7));
     }
 
-    @org.junit.jupiter.api.Test
-    void testAjouter() {
-        data.ajouter(-10, 0);
-        data.ajouter(35, 4);
-        data.ajouter(60, 8);
-        assertEquals(-10, data.getElementAt(0));
-        assertEquals(35, data.getElementAt(4));
-        assertEquals(60, data.getElementAt(8));
-        assertEquals(9, data.getNbElements());
+    @Test
+    void inserer() {
+        assertTrue(data.ajouter(90, 0));
+        assertTrue(data.ajouter(94, 4));
+        assertTrue(data.ajouter(97, 7));
+        assertEquals(8, data.getNbElements());
+        assertEquals(90, data.getElementAt(0));
+        assertEquals(94, data.getElementAt(4));
+        assertEquals(97, data.getElementAt(7));
     }
 
-    @org.junit.jupiter.api.Test
-    void testAjouter1() {
+    @Test
+    void insererPositionsInvalides() {
+        // Ces ajouts devraient être refusés
+        assertFalse(data.ajouter(91, -9));
+        assertFalse(data.ajouter(99, 9));
+        assertEquals(5, data.getNbElements());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    void ajouterPlusieurs() {
+        Liste autre = new Liste();
+        autre.ajouter(95);
+        autre.ajouter(96);
+        autre.ajouter(97);
+        data.ajouter(autre);
+
+        assertEquals(8, data.getNbElements());
+        assertEquals(95, data.getElementAt(5));
+        assertEquals(96, data.getElementAt(6));
+        assertEquals(97, data.getElementAt(7));
+    }
+
+    @Test
     void trouver() {
     }
 
